@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student List</title>
+  <style>
+    /* Your existing styles here */
+  </style>
+</head>
+<body>
+
+  <h2>Student List</h2>
+  <button onclick="location.href='/create'">Create New Student</button>
+
+  <% 
+    const students = [
+      { _id: '1', name: 'Alice Johnson', email: 'alice@example.com', class: '10th Grade', rollNo: 12, department: 'Science' },
+      { _id: '2', name: 'Bob Smith', email: 'bob@example.com', class: '9th Grade', rollNo: 5, department: 'Commerce' },
+      { _id: '3', name: 'Charlie Lee', email: 'charlie@example.com', class: '11th Grade', rollNo: 20, department: 'Arts' }
+    ];
+  %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Class</th>
+        <th>Roll No</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(student => { %>
+        <tr>
+          <td><%= student._id %></td>
+          <td><%= student.name %></td>
+          <td><%= student.email %></td>
+          <td><%= student.class %></td>
+          <td><%= student.rollNo %></td>
+          <td><%= student.department %></td>
+          <td class="actions">
+            <form action="/edit/<%= student._id %>" method="get">
+              <button type="submit">Edit</button>
+            </form>
+            <form action="/delete/<%= student._id %>" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+</body>
+</html>
+
